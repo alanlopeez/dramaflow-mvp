@@ -1,0 +1,29 @@
+{
+  "name": "dramaflow-saas-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DramaFlow AI - TikTok Mini-Drama SaaS Engine MVP",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=apps/web run dev",
+    "build": "npm --workspace=apps/web run build",
+    "start": "npm --workspace=apps/web run start",
+    "worker:dev": "cd apps/worker-engine && uvicorn src.main:app --reload --port 8080",
+    "docker:up": "docker-compose up --build",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "ai",
+    "tiktok",
+    "mini-drama",
+    "saas",
+    "gcp",
+    "vertex-ai",
+    "remotion",
+    "ffmpeg"
+  ],
+  "author": "DramaFlow AI",
+  "license": "MIT"
+}

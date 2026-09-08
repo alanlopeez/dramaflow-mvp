@@ -1,0 +1,84 @@
+steps:
+  # 1. Build Worker Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/worker-engine:$COMMIT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/worker-engine:latest'
+      - './apps/worker-engine'
+    id: 'build-worker'
+
+  # 2. Build Web Frontend Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/web-app:$COMMIT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/web-app:latest'
+      - './apps/web'
+    id: 'build-web'
+
+  # 3. Push Worker Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '--all-tags'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/worker-engine'
+    id: 'push-worker'
+
+  # 4. Push Web Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '--all-tags'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/web-app'
+    id: 'push-web'
+
+  # 5. Deploy Worker to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'dramaflow-worker'
+      - '--image=us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/worker-engine:latest'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--memory=4Gi'
+      - '--cpu=2'
+      - '--min-instances=0'
+      - '--max-instances=10'
+      - '--set-env-vars=GCP_PROJECT_ID=$PROJECT_ID,GCP_REGION=us-central1,GCS_BUCKET_NAME=gcs_bucket_name'
+    id: 'deploy-worker'
+
+  # 6. Deploy Web to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'dramaflow-web'
+      - '--image=us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/web-app:latest'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--min-instances=0'
+      - '--max-instances=10'
+      - '--set-env-vars=GCP_PROJECT_ID=$PROJECT_ID,GCP_REGION=us-central1,GCS_BUCKET_NAME=gcs_bucket_name,DATABASE_URL=postgresql://neondb_owner:npg_vn8VUpACk4sI@ep-delicate-queen-ae87sen3-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require'
+    id: 'deploy-web'
+
+substitutions:
+  _REGION: us-central1
+
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/worker-engine:latest'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/dramaflow-repo/web-app:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

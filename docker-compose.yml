@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - WORKER_URL=http://worker:8080
+      - GCP_PROJECT_ID=dramaflow-508012
+      - GCP_REGION=us-central1
+      - GCS_BUCKET_NAME=gcs_bucket_name
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/dramaflow-508012-a00a72dcff1e.json
+    volumes:
+      - ./dramaflow-508012-a00a72dcff1e.json:/app/dramaflow-508012-a00a72dcff1e.json:ro
+    depends_on:
+      - worker
+
+  worker:
+    build:
+      context: ./apps/worker-engine
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - GCP_PROJECT_ID=dramaflow-508012
+      - GCP_REGION=us-central1
+      - GCS_BUCKET_NAME=gcs_bucket_name
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/dramaflow-508012-a00a72dcff1e.json
+    volumes:
+      - ./dramaflow-508012-a00a72dcff1e.json:/app/dramaflow-508012-a00a72dcff1e.json:ro
