@@ -132,40 +132,41 @@ export default function StudioPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col p-4 md:p-8 max-w-7xl mx-auto w-full space-y-6">
+    <div className="flex-1 flex flex-col p-3.5 sm:p-6 md:p-8 max-w-7xl mx-auto w-full space-y-5 sm:space-y-6">
       {/* Studio Header Breadcrumb & Step Navigation */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4 pb-4 border-b border-white/10">
         <div className="flex items-center gap-3">
           <button
             onClick={() => router.push('/dashboard')}
-            className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors"
+            className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors shrink-0"
+            aria-label="Volver al panel"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <div>
-            <h1 className="text-xl font-extrabold text-white flex items-center gap-2">
+          <div className="min-w-0">
+            <h1 className="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2 truncate">
               <span>DramaFlow Studio</span>
-              <span className="text-xs px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 font-mono">
+              <span className="text-[10px] sm:text-xs px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 font-mono shrink-0">
                 {projectId}
               </span>
             </h1>
-            <p className="text-xs text-zinc-400">
+            <p className="text-[11px] sm:text-xs text-zinc-400 truncate">
               Creación de Minidramas Paso a Paso • Resultados Controlados
             </p>
           </div>
         </div>
 
         {/* 3 Clear Ordered Steps */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+        <div className="flex items-center gap-2 overflow-x-auto touch-scroll pb-1 sm:pb-0 w-full sm:w-auto">
           {[
-            { step: 1, label: '1. Concepto y Gancho' },
-            { step: 2, label: '2. Confirmar Guión y Voces' },
-            { step: 3, label: '3. Minidrama (Video + Diálogo)' },
+            { step: 1, shortLabel: '1. Concepto', label: '1. Concepto y Gancho' },
+            { step: 2, shortLabel: '2. Guión', label: '2. Confirmar Guión y Voces' },
+            { step: 3, shortLabel: '3. Minidrama', label: '3. Minidrama (Video)' },
           ].map((s) => (
             <button
               key={s.step}
               onClick={() => setCurrentStep(s.step)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold transition-all shrink-0 min-h-[38px] flex items-center justify-center ${
                 currentStep === s.step
                   ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30 ring-1 ring-violet-400'
                   : currentStep > s.step
@@ -173,7 +174,8 @@ export default function StudioPage() {
                   : 'bg-zinc-900 border border-white/10 text-zinc-500 hover:text-zinc-300'
               }`}
             >
-              {s.label}
+              <span className="sm:hidden">{s.shortLabel}</span>
+              <span className="hidden sm:inline">{s.label}</span>
             </button>
           ))}
         </div>

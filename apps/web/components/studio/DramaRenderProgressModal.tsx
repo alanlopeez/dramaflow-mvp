@@ -123,33 +123,33 @@ export const DramaRenderProgressModal: React.FC<DramaRenderProgressModalProps> =
 
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-      <div className="w-full max-w-xl rounded-3xl glass-panel-glow border border-violet-500/40 p-6 md:p-8 space-y-6 shadow-2xl relative overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="w-full max-w-xl rounded-3xl glass-panel-glow border border-violet-500/40 p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 shadow-2xl relative overflow-hidden max-h-[92vh] overflow-y-auto">
         {/* Glowing Background Radial */}
         <div className="absolute -top-24 -right-24 w-60 h-60 bg-violet-600/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-pink-600/20 rounded-full blur-3xl pointer-events-none" />
 
         {/* Modal Header */}
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-3 rounded-2xl bg-gradient-to-br from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-600/30">
-              <Film className="w-6 h-6" />
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="p-2 sm:p-3 rounded-2xl bg-gradient-to-br from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-600/30 shrink-0">
+              <Film className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold uppercase tracking-wider">
                   NexoRouter Video AI
                 </span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               </div>
-              <h3 className="text-lg font-black text-white mt-1">
+              <h3 className="text-base sm:text-lg font-black text-white mt-0.5 sm:mt-1">
                 Generando Minidrama en 1080p
               </h3>
             </div>
           </div>
 
-          <div className="text-right">
-            <span className="text-2xl font-black text-violet-400 font-mono">
+          <div className="text-right shrink-0">
+            <span className="text-xl sm:text-2xl font-black text-violet-400 font-mono">
               {progress}%
             </span>
           </div>
@@ -219,12 +219,12 @@ export const DramaRenderProgressModal: React.FC<DramaRenderProgressModalProps> =
         </div>
 
         {/* Actions Footer */}
-        <div className="pt-2 flex items-center justify-between gap-4 border-t border-white/10">
+        <div className="pt-2.5 flex items-center justify-between gap-3 border-t border-white/10">
           <button
             type="button"
             onClick={onCancel}
             disabled={isDone}
-            className="text-xs text-zinc-500 hover:text-zinc-300 disabled:opacity-30 transition-colors"
+            className="text-xs text-zinc-500 hover:text-zinc-300 disabled:opacity-30 transition-colors py-2 px-3 min-h-[40px] flex items-center"
           >
             Cancelar
           </button>
@@ -233,9 +233,9 @@ export const DramaRenderProgressModal: React.FC<DramaRenderProgressModalProps> =
             type="button"
             onClick={handleFinish}
             disabled={!isDone}
-            className={`px-6 py-3 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all min-h-[44px] ${
               isDone
-                ? 'bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-600/30 hover:scale-[1.02] cursor-pointer'
+                ? 'bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-600/30 hover:scale-[1.02] active:scale-[0.98] cursor-pointer'
                 : 'bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50'
             }`}
           >

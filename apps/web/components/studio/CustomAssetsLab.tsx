@@ -228,11 +228,11 @@ export const CustomAssetsLab: React.FC<Props> = ({
   return (
     <div className="space-y-6">
       {/* Tab Switcher */}
-      <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-zinc-900/90 border border-white/10">
+      <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-zinc-900/90 border border-white/10 overflow-x-auto touch-scroll">
         {[
-          { id: 'characters', label: '1. Personajes y Rostros', icon: Users, count: characters.length },
-          { id: 'locations', label: '2. Escenarios y Fondos', icon: ImageIcon, count: locations.length },
-          { id: 'props', label: '3. Objetos y Productos', icon: Package, count: propsList.length },
+          { id: 'characters', shortLabel: 'Personajes', label: '1. Personajes y Rostros', icon: Users, count: characters.length },
+          { id: 'locations', shortLabel: 'Escenarios', label: '2. Escenarios y Fondos', icon: ImageIcon, count: locations.length },
+          { id: 'props', shortLabel: 'Objetos', label: '3. Objetos y Productos', icon: Package, count: propsList.length },
         ].map((tab) => {
           const Icon = tab.icon;
           const isSelected = activeTab === tab.id;
@@ -241,14 +241,15 @@ export const CustomAssetsLab: React.FC<Props> = ({
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as any)}
-              className={`flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
+              className={`flex-1 py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 sm:gap-2 min-h-[40px] shrink-0 ${
                 isSelected
                   ? 'bg-gradient-to-r from-violet-600 to-pink-600 text-white shadow-lg shadow-violet-600/30'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Icon className="w-4 h-4" />
-              <span>{tab.label}</span>
+              <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span className="sm:hidden">{tab.shortLabel}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
               <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-black/40 font-mono">
                 {tab.count}
               </span>

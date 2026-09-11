@@ -139,24 +139,24 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
   };
 
   return (
-    <div className="max-w-4xl mx-auto w-full space-y-6 animate-fadeIn pb-12">
+    <div className="max-w-4xl mx-auto w-full space-y-5 sm:space-y-6 animate-fadeIn pb-12 sm:pb-16">
       {/* Top Notification Badge */}
-      <div className="p-5 rounded-2xl glass-panel-glow border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="p-4 sm:p-5 rounded-2xl glass-panel-glow border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-            <CheckCircle2 className="w-6 h-6" />
+          <div className="p-2 sm:p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shrink-0">
+            <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold uppercase tracking-wider">
+              <span className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold uppercase tracking-wider">
                 Paso 3 de 3: Minidrama Listo
               </span>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
             </div>
-            <h2 className="text-xl font-extrabold text-white mt-0.5">
+            <h2 className="text-lg sm:text-xl font-extrabold text-white mt-0.5">
               ¡Tu Minidrama ha sido generado con éxito!
             </h2>
-            <p className="text-xs text-zinc-400">
+            <p className="text-[11px] sm:text-xs text-zinc-400">
               Formato vertical 9:16 (1080p) • Subtítulos dinámicos • Voces de ElevenLabs
             </p>
           </div>
@@ -167,7 +167,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
           <button
             type="button"
             onClick={handleToggleMute}
-            className="px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center gap-2 hover:bg-amber-500/30 transition-all animate-pulse"
+            className="w-full sm:w-auto px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold flex items-center justify-center gap-2 hover:bg-amber-500/30 transition-all animate-pulse min-h-[40px]"
           >
             <VolumeX className="w-4 h-4" />
             <span>Hacer clic para activar audio</span>
@@ -176,12 +176,12 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
       </div>
 
       {/* Main Presentation Container */}
-      <div className="flex flex-col items-center justify-center space-y-6">
+      <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6 w-full px-1">
         {/* Smartphone 9:16 Mockup */}
-        <div className="relative w-full max-w-[340px] aspect-[9/16] rounded-[38px] overflow-hidden border-[6px] border-zinc-800 bg-black shadow-2xl shadow-violet-950/40 group">
+        <div className="relative w-full max-w-[290px] xs:max-w-[310px] sm:max-w-[340px] aspect-[9/16] rounded-[32px] sm:rounded-[38px] overflow-hidden border-4 sm:border-[6px] border-zinc-800 bg-black shadow-2xl shadow-violet-950/40 group mx-auto">
           {/* Camera Notch / Speaker */}
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-4 bg-zinc-950 rounded-full z-40 flex items-center justify-center pointer-events-none">
-            <div className="w-2 h-2 rounded-full bg-zinc-800 mr-3" />
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-3.5 sm:h-4 bg-zinc-950 rounded-full z-40 flex items-center justify-center pointer-events-none">
+            <div className="w-2 h-2 rounded-full bg-zinc-800 mr-2.5 sm:mr-3" />
             <div className="w-1.5 h-1.5 rounded-full bg-blue-900/60" />
           </div>
 
@@ -236,7 +236,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
         </div>
 
         {/* Video Scrubber & Play Controls Bar */}
-        <div className="w-full max-w-[340px] p-3 rounded-2xl bg-zinc-900 border border-white/10 space-y-2 shadow-lg">
+        <div className="w-full max-w-[290px] xs:max-w-[310px] sm:max-w-[340px] p-3 rounded-2xl bg-zinc-900 border border-white/10 space-y-2 shadow-lg">
           <div className="flex items-center justify-between text-[11px] text-zinc-400 font-mono">
             <span>{formatTime(currentTime)}</span>
             <input
@@ -246,7 +246,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
               step={0.1}
               value={currentTime}
               onChange={handleSeek}
-              className="mx-3 flex-1 h-1.5 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-violet-500"
+              className="mx-3 flex-1 h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-violet-500"
             />
             <span>{formatTime(duration)}</span>
           </div>
@@ -256,7 +256,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
               <button
                 type="button"
                 onClick={handleTogglePlay}
-                className="p-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white shadow-md shadow-violet-600/30 transition-all"
+                className="p-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white shadow-md shadow-violet-600/30 transition-all min-h-[40px] min-w-[40px] flex items-center justify-center"
                 title={isPlaying ? 'Pausar' : 'Reproducir'}
               >
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
@@ -265,7 +265,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
               <button
                 type="button"
                 onClick={handleRestart}
-                className="p-2 rounded-xl bg-zinc-800 text-zinc-300 hover:text-white transition-all"
+                className="p-2.5 rounded-xl bg-zinc-800 text-zinc-300 hover:text-white transition-all min-h-[40px] min-w-[40px] flex items-center justify-center"
                 title="Reiniciar video"
               >
                 <RotateCcw className="w-4 h-4" />
@@ -275,7 +275,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
             <button
               type="button"
               onClick={handleToggleMute}
-              className="px-3 py-1.5 rounded-xl bg-zinc-800 text-xs font-semibold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-all"
+              className="px-3 py-2 rounded-xl bg-zinc-800 text-xs font-semibold text-zinc-300 hover:text-white flex items-center gap-1.5 transition-all min-h-[40px]"
             >
               {isMuted ? (
                 <>
@@ -293,24 +293,24 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
         </div>
 
         {/* 2 MAIN ACTION BUTTONS REQUESTED BY USER */}
-        <div className="w-full max-w-md space-y-3 pt-2">
+        <div className="w-full max-w-[290px] xs:max-w-[310px] sm:max-w-md space-y-3 pt-2">
           {/* Button 1: Download Video */}
           <button
             type="button"
             onClick={handleDownload}
-            className="w-full py-4 px-6 rounded-2xl font-black text-base text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 shadow-xl shadow-emerald-950/40 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99]"
+            className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-2xl font-black text-sm sm:text-base text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 shadow-xl shadow-emerald-950/40 flex items-center justify-center gap-2.5 transition-all hover:scale-[1.01] active:scale-[0.98] min-h-[48px]"
           >
-            <Download className="w-5 h-5" />
-            <span>Descargar Video Completo (1080p)</span>
+            <Download className="w-5 h-5 shrink-0" />
+            <span className="truncate">Descargar Video Completo (1080p)</span>
           </button>
 
           {/* Button 2: Generate New Video (triggers warning modal) */}
           <button
             type="button"
             onClick={() => setIsRegenerateModalOpen(true)}
-            className="w-full py-3.5 px-6 rounded-2xl font-bold text-sm text-zinc-300 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-white/10 flex items-center justify-center gap-2.5 transition-all"
+            className="w-full py-3 sm:py-3.5 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-sm text-zinc-300 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-white/10 flex items-center justify-center gap-2 transition-all min-h-[44px]"
           >
-            <RotateCcw className="w-4 h-4 text-violet-400" />
+            <RotateCcw className="w-4 h-4 text-violet-400 shrink-0" />
             <span>Volver a generar nuevo video</span>
           </button>
         </div>
@@ -319,29 +319,30 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
       {/* CONFIRMATION WARNING MODAL */}
       {isRegenerateModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
-          <div className="w-full max-w-lg rounded-3xl glass-panel-glow border border-amber-500/40 p-6 md:p-8 space-y-5 shadow-2xl relative">
+          <div className="w-full max-w-lg rounded-3xl glass-panel-glow border border-amber-500/40 p-5 sm:p-7 md:p-8 space-y-4 sm:space-y-5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               type="button"
               onClick={() => setIsRegenerateModalOpen(false)}
-              className="absolute top-4 right-4 text-zinc-400 hover:text-white"
+              className="absolute top-4 right-4 text-zinc-400 hover:text-white p-1"
+              aria-label="Cerrar modal"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-3 text-amber-400">
-              <div className="p-3 rounded-2xl bg-amber-500/20 border border-amber-500/30">
-                <AlertTriangle className="w-7 h-7" />
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-amber-500/20 border border-amber-500/30 shrink-0">
+                <AlertTriangle className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
-              <h3 className="text-lg font-black text-white">
+              <h3 className="text-base sm:text-lg font-black text-white">
                 ¿Está seguro que quiere volver a generar el video?
               </h3>
             </div>
 
-            <p className="text-sm text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
               Se perderá el video hecho si no lo descargaste hasta ahora. Lo podés hacer antes de volver a generar un video nuevo.
             </p>
 
-            <div className="pt-3 flex flex-col sm:flex-row gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
               {/* Option to download first */}
               <button
                 type="button"
@@ -349,7 +350,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
                   handleDownload();
                   setIsRegenerateModalOpen(false);
                 }}
-                className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg"
+                className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg min-h-[44px]"
               >
                 <Download className="w-4 h-4" />
                 <span>Descargar video ahora</span>
@@ -359,7 +360,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
               <button
                 type="button"
                 onClick={handleConfirmRegenerate}
-                className="py-3 px-4 rounded-xl bg-rose-600/20 hover:bg-rose-600 border border-rose-500/30 text-rose-300 hover:text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
+                className="py-3 px-4 rounded-xl bg-rose-600/20 hover:bg-rose-600 border border-rose-500/30 text-rose-300 hover:text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all min-h-[44px]"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Sí, volver a generar</span>
@@ -369,7 +370,7 @@ export const ControlledMinidramaPlayer: React.FC<ControlledMinidramaPlayerProps>
               <button
                 type="button"
                 onClick={() => setIsRegenerateModalOpen(false)}
-                className="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold"
+                className="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold min-h-[44px]"
               >
                 Cancelar
               </button>

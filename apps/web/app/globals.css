@@ -30,6 +30,25 @@ body {
   background: hsl(var(--background));
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Safe Area Insets for iOS devices (iPhone X through 16 Pro) */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 1rem);
+}
+
+/* Touch friendly momentum scroll */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.touch-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 /* Glassmorphism styles */

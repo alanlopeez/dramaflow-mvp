@@ -17,7 +17,7 @@ export const Sidebar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 border-r border-white/10 bg-[#0F0F13] flex flex-col justify-between p-4 min-h-[calc(100vh-4rem)]">
+    <aside className="hidden md:flex md:w-64 shrink-0 border-r border-white/10 bg-[#0F0F13] flex-col justify-between p-4 min-h-[calc(100vh-4rem)]">
       <div className="space-y-6">
         <div className="space-y-1">
           <p className="px-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">Navegación</p>

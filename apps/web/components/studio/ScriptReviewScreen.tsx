@@ -163,22 +163,22 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto w-full space-y-6 animate-fadeIn pb-12">
+    <div className="max-w-4xl mx-auto w-full space-y-5 sm:space-y-6 animate-fadeIn pb-16">
       {/* Top Header Card */}
-      <div className="p-6 rounded-2xl glass-panel-glow border border-violet-500/30 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-2xl glass-panel-glow border border-violet-500/30 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 sm:gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 rounded-xl bg-violet-600/20 border border-violet-500/30 text-violet-300">
-              <FileText className="w-6 h-6" />
+            <div className="p-2.5 sm:p-3 rounded-xl bg-violet-600/20 border border-violet-500/30 text-violet-300 shrink-0">
+              <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold uppercase tracking-wider">
-                  Paso 2 de 3: Confirmar Guión y Voces por Escena
+                <span className="text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold uppercase tracking-wider">
+                  Paso 2 de 3: Confirmar Guión y Voces
                 </span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               </div>
-              <h2 className="text-2xl font-black text-white mt-1">
+              <h2 className="text-xl sm:text-2xl font-black text-white mt-1">
                 Guión y Voces de Diálogo por Escena
               </h2>
             </div>
@@ -189,7 +189,7 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
             <button
               type="button"
               onClick={handleCopyScriptText}
-              className="px-3 py-2 rounded-xl bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all"
+              className="flex-1 sm:flex-initial px-3 py-2 rounded-xl bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all min-h-[36px]"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? 'Copiado' : 'Copiar Texto'}</span>
@@ -199,7 +199,7 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
               type="button"
               onClick={onRegenerate}
               disabled={isRegenerating}
-              className="px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-all disabled:opacity-50"
+              className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all disabled:opacity-50 min-h-[36px]"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${isRegenerating ? 'animate-spin' : ''}`} />
               <span>Regenerar Guión</span>
@@ -208,7 +208,7 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
         </div>
 
         <p className="text-xs text-zinc-400 leading-relaxed">
-          Revisá el guión, editá los diálogos y elegí la voz para cada escena. Al hacer clic en una voz, escucharás una muestra de audio al instante. Por defecto, cada personaje tiene su voz asignada automáticamente.
+          Revisá el guión, editá los diálogos y elegí la voz para cada escena. Al hacer clic en una voz, escucharás una muestra de audio al instante.
         </p>
 
         {/* Title & Hook Direct Edit Box */}
@@ -289,27 +289,27 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
           return (
             <div
               key={scene.scene_number || index}
-              className="p-5 rounded-2xl bg-zinc-900/90 border border-white/10 space-y-4 hover:border-violet-500/40 transition-all shadow-lg"
+              className="p-4 sm:p-5 rounded-2xl bg-zinc-900/90 border border-white/10 space-y-3.5 sm:space-y-4 hover:border-violet-500/40 transition-all shadow-lg"
             >
               {/* Scene Header */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-2.5">
+                <div className="flex items-center gap-2">
                   <span className="px-2.5 py-1 rounded-lg bg-violet-600/20 text-violet-300 font-mono font-bold text-xs border border-violet-500/30">
                     ESCENA {index + 1}
                   </span>
-                  <span className="text-xs text-zinc-400 font-mono">
+                  <span className="text-[11px] sm:text-xs text-zinc-400 font-mono">
                     Duración: {scene.duration_seconds || 6}s
                   </span>
                 </div>
 
                 {/* Character Speaker Badge / Selector */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <span className="text-[11px] text-zinc-400">Habla:</span>
                   <input
                     type="text"
                     value={scene.character}
                     onChange={(e) => handleSceneCharacterChange(index, e.target.value)}
-                    className={`px-3 py-1 rounded-lg text-xs font-bold border focus:outline-none focus:ring-1 focus:ring-violet-500 ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border focus:outline-none focus:ring-1 focus:ring-violet-500 max-w-[130px] sm:max-w-none ${
                       isMarcos
                         ? 'bg-blue-500/10 border-blue-500/30 text-blue-300'
                         : 'bg-pink-500/10 border-pink-500/30 text-pink-300'
@@ -415,12 +415,12 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
         })}
       </div>
 
-      {/* Main Bottom Confirmation Bar */}
-      <div className="sticky bottom-4 z-40 p-4 rounded-2xl bg-zinc-950/95 border border-violet-500/40 backdrop-blur-xl shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Main Bottom Confirmation Bar (Positioned above MobileBottomNav on mobile) */}
+      <div className="sticky bottom-20 md:bottom-4 z-40 p-3 sm:p-4 rounded-2xl bg-zinc-950/95 border border-violet-500/40 backdrop-blur-xl shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
         <button
           type="button"
           onClick={onBackToConcept}
-          className="px-4 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white font-semibold text-xs flex items-center justify-center gap-2 transition-all"
+          className="w-full sm:w-auto px-4 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white font-semibold text-xs flex items-center justify-center gap-2 transition-all min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Volver al Concepto</span>
@@ -429,11 +429,12 @@ export const ScriptReviewScreen: React.FC<ScriptReviewScreenProps> = ({
         <button
           type="button"
           onClick={onConfirmScript}
-          className="flex-1 py-3.5 px-6 rounded-xl font-black text-sm text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 shadow-xl shadow-violet-600/30 flex items-center justify-center gap-2.5 transition-all hover:scale-[1.01] active:scale-[0.99]"
+          className="w-full sm:flex-1 py-3.5 px-4 sm:px-6 rounded-xl font-black text-xs sm:text-sm text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 shadow-xl shadow-violet-600/30 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-[0.98] min-h-[46px]"
         >
-          <CheckCircle2 className="w-5 h-5 text-emerald-300" />
-          <span>Confirmar Guión y Voces para Crear Minidrama (Video + Diálogo)</span>
-          <ArrowRight className="w-4 h-4" />
+          <CheckCircle2 className="w-5 h-5 text-emerald-300 shrink-0" />
+          <span className="sm:hidden">Confirmar Guión y Crear Minidrama</span>
+          <span className="hidden sm:inline">Confirmar Guión y Voces para Crear Minidrama (Video + Diálogo)</span>
+          <ArrowRight className="w-4 h-4 shrink-0" />
         </button>
       </div>
     </div>

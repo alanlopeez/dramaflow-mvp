@@ -143,42 +143,40 @@ export const DramaWizard: React.FC<Props> = ({ initialData, onSubmit, isLoading 
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-w-3xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 max-w-3xl mx-auto w-full">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl glass-panel-glow border border-violet-500/30 space-y-2">
-        <div className="flex items-center gap-2 text-violet-400 text-xs font-bold uppercase tracking-wider">
-          <Sparkles className="w-4 h-4" />
+      <div className="p-4 sm:p-6 rounded-2xl glass-panel-glow border border-violet-500/30 space-y-2">
+        <div className="flex items-center gap-2 text-violet-400 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
+          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
           <span>Paso 1 de 3: Modo de Generación y Concepto</span>
         </div>
-        <h2 className="text-2xl font-extrabold text-white tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
           Elegí cómo querés crear tu Minidrama
         </h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
           Podés generar un video 100% con inteligencia artificial o tomar el control total subiendo personajes con foto real, escenarios y productos.
         </p>
       </div>
 
-
-
       {/* Niche Selection */}
       <div className="space-y-3">
-        <label className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
-          <Target className="w-4 h-4 text-violet-400" />
+        <label className="text-xs sm:text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <Target className="w-4 h-4 text-violet-400 shrink-0" />
           Elegí tu Nicho o Industria
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
           {NICHES.map((n) => (
             <button
               key={n}
               type="button"
               onClick={() => setNiche(n)}
-              className={`p-3 rounded-xl text-xs font-medium border text-left transition-all ${
+              className={`p-2.5 sm:p-3 rounded-xl text-xs font-medium border text-left transition-all min-h-[44px] flex items-center ${
                 niche === n
                   ? 'border-violet-500 bg-violet-500/15 text-white ring-1 ring-violet-500 shadow-md shadow-violet-500/10'
                   : 'border-white/10 bg-zinc-900/60 text-zinc-400 hover:text-white hover:bg-zinc-900'
               }`}
             >
-              {n}
+              <span className="truncate">{n}</span>
             </button>
           ))}
         </div>
@@ -186,7 +184,7 @@ export const DramaWizard: React.FC<Props> = ({ initialData, onSubmit, isLoading 
 
       {/* Business Value Proposition */}
       <div className="space-y-2">
-        <label className="text-sm font-semibold text-zinc-300">
+        <label className="text-xs sm:text-sm font-semibold text-zinc-300">
           Propuesta de Valor de tu Negocio / Arma Secreta
         </label>
         <input
@@ -195,9 +193,9 @@ export const DramaWizard: React.FC<Props> = ({ initialData, onSubmit, isLoading 
           onChange={(e) => setValueProp(e.target.value)}
           placeholder="Ej: Software de IA que reduce los costos operativos un 50% en una semana"
           required
-          className="w-full px-4 py-3 rounded-xl bg-zinc-900/80 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
+          className="w-full px-3.5 sm:px-4 py-3 rounded-xl bg-zinc-900/80 border border-white/10 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-xs sm:text-sm transition-all min-h-[46px]"
         />
-        <p className="text-xs text-zinc-500">
+        <p className="text-[11px] sm:text-xs text-zinc-500">
           Esta será la revelación clímax que resuelve el conflicto en la última escena.
         </p>
       </div>
@@ -280,18 +278,18 @@ export const DramaWizard: React.FC<Props> = ({ initialData, onSubmit, isLoading 
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 shadow-lg shadow-violet-600/30 flex items-center justify-center gap-3 transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+        className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-violet-600 via-purple-600 to-pink-600 hover:from-violet-500 hover:to-pink-500 shadow-lg shadow-violet-600/30 flex items-center justify-center gap-2.5 transition-all hover:scale-[1.01] active:scale-[0.98] disabled:opacity-50 min-h-[48px]"
       >
         {isLoading ? (
           <>
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            <span>Generando minidrama personalizado con IA...</span>
+            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin shrink-0" />
+            <span className="truncate">Generando minidrama personalizado con IA...</span>
           </>
         ) : (
           <>
-            <Sparkles className="w-5 h-5" />
-            <span>Crear Minidrama ({generationMode === 'custom_assets' ? 'Con Tus Personajes y Props' : '100% IA'})</span>
-            <ArrowRight className="w-5 h-5" />
+            <Sparkles className="w-5 h-5 shrink-0" />
+            <span className="truncate">Crear Minidrama ({generationMode === 'custom_assets' ? 'Con Tus Personajes' : '100% IA'})</span>
+            <ArrowRight className="w-5 h-5 shrink-0" />
           </>
         )}
       </button>

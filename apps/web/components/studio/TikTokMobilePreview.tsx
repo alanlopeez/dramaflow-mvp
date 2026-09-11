@@ -81,13 +81,13 @@ export const TikTokMobilePreview: React.FC<Props> = ({
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full max-w-full px-2 sm:px-0">
       {/* 9:16 Phone Device Shell */}
-      <div className="relative w-[320px] h-[640px] bg-black rounded-[44px] p-3 shadow-2xl border-4 border-zinc-800 ring-1 ring-white/10 overflow-hidden flex flex-col justify-between select-none">
+      <div className="relative w-full max-w-[300px] xs:max-w-[320px] sm:max-w-[330px] aspect-[9/16] max-h-[580px] sm:max-h-[640px] bg-black rounded-[36px] sm:rounded-[44px] p-2.5 sm:p-3 shadow-2xl border-[3px] sm:border-4 border-zinc-800 ring-1 ring-white/10 overflow-hidden flex flex-col justify-between select-none mx-auto">
         
         {/* Dynamic Island / Top Camera Notch */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-zinc-900 rounded-full z-30 flex items-center justify-end px-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-700" />
+        <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-24 sm:w-28 h-4 sm:h-5 bg-zinc-900 rounded-full z-30 flex items-center justify-end px-2">
+          <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-zinc-800 border border-zinc-700" />
         </div>
 
         {/* Video Canvas Background */}
@@ -259,12 +259,12 @@ export const TikTokMobilePreview: React.FC<Props> = ({
       </div>
 
       {/* Scene Switcher Pills */}
-      <div className="mt-4 flex items-center gap-2">
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-full px-2">
         {scenes.map((_, i) => (
           <button
             key={i}
             onClick={() => onSelectSceneIndex(i)}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all min-h-[36px] flex items-center justify-center ${
               activeSceneIndex === i
                 ? 'bg-violet-600 text-white shadow-md shadow-violet-600/30 ring-1 ring-violet-400'
                 : 'bg-zinc-800/80 text-zinc-400 hover:text-white hover:bg-zinc-700'
